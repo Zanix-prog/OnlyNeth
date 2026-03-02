@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "vite-react-shadcn-ts",
+  "name": "onlyneth",
   "compatibility_date": "2026-03-02",
   "observability": {
     "enabled": true
