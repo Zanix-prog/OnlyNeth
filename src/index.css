@@ -1,0 +1,198 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  VULKAN — Blood Red / Black Elite System
+  Aggressive. Minimal. Premium.
+  Gradient: #6C080A → Black
+*/
+
+@layer base {
+  :root {
+    /* Core Black Foundation */
+    --background: 0 0% 4%;
+    --foreground: 0 0% 96%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 96%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 96%;
+
+    /* Primary — Blood Red (#6C080A) */
+    --primary: 358 86% 23%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary — Dark Crimson */
+    --secondary: 358 70% 18%;
+    --secondary-foreground: 0 0% 98%;
+
+    /* Neutrals */
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 65%;
+
+    /* Accent */
+    --accent: 358 86% 30%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 16%;
+    --input: 0 0% 10%;
+    --ring: 358 86% 23%;
+
+    --radius: 1rem;
+
+    /* Main Gradient (#6C080A → Black) */
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(358 86% 23%) 0%,
+      hsl(358 86% 18%) 40%,
+      hsl(0 0% 0%) 100%
+    );
+
+    --gradient-depth: linear-gradient(
+      180deg,
+      hsl(0 0% 6%) 0%,
+      hsl(0 0% 2%) 100%
+    );
+
+    --gradient-metallic: linear-gradient(
+      135deg,
+      hsl(358 86% 23%) 0%,
+      hsl(0 0% 10%) 50%,
+      hsl(358 86% 23%) 100%
+    );
+
+    /* Red Glow */
+    --glow-soft: 0 0 25px hsl(358 86% 23% / 0.45);
+    --glow-strong: 0 0 55px hsl(358 86% 23% / 0.75);
+
+    --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-elegant: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground overflow-x-hidden;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    letter-spacing: -0.01em;
+  }
+
+  h1, h2, h3 {
+    letter-spacing: -0.03em;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+
+  /* Glass Card */
+  .glass-card {
+    @apply bg-card/60 backdrop-blur-2xl border border-border/60 rounded-2xl;
+    box-shadow: 0 10px 40px hsl(0 0% 0% / 0.6);
+    transition: var(--transition-smooth);
+  }
+
+  .glass-card:hover {
+    box-shadow: 0 20px 60px hsl(358 86% 23% / 0.25);
+    transform: translateY(-6px);
+  }
+
+  /* Glow Text */
+  .text-glow {
+    text-shadow: var(--glow-soft);
+  }
+
+  .text-glow-strong {
+    text-shadow: var(--glow-strong);
+  }
+
+  /* Gradient Background */
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+    background-size: 200% 200%;
+    animation: gradient-shift 10s ease infinite;
+  }
+
+  .bg-gradient-depth {
+    background: var(--gradient-depth);
+  }
+
+  /* Metallic Border */
+  .metallic-border {
+    position: relative;
+    border-radius: inherit;
+  }
+
+  .metallic-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: var(--gradient-metallic);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+                  linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  /* Elite Button */
+  .btn-elite {
+    @apply px-6 py-3 rounded-xl font-semibold tracking-wide;
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: var(--glow-soft);
+    transition: var(--transition-elegant);
+  }
+
+  .btn-elite:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--glow-strong);
+  }
+
+  .hover-lift {
+    transition: var(--transition-smooth);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-5px);
+  }
+}
+
+@layer utilities {
+
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: var(--glow-soft); }
+    50% { box-shadow: var(--glow-strong); }
+  }
+
+  @keyframes float-smooth {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .animate-float {
+    animation: float-smooth 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+}
