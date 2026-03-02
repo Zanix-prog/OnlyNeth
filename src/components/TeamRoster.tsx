@@ -20,7 +20,7 @@ const TeamRoster = () => {
     "FraxTrax",
     "Qfal",
     "Turtl3Bum",
-    "IP4avle",
+    "iPAVLE",
     "nikolakisis",
     "Kxyroo",
     "Traficiante",
